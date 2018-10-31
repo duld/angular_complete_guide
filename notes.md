@@ -45,3 +45,55 @@ ng serve --open
 ## Angular vs Angular N
 
 Angular 2 is a complete re-write of Angular 1. Angular version 4 and above is considered, "just Angular". Angular 1 is now called AngularJS. Each new version of Angular is just an incremental improment over the previous version.
+
+## CLI Deep Dive & Troubleshooting
+
+Depeneding on the Angular CLI version you have installed, the generated application may or may not have the "FormsModule" as an import in the AppModule. If the import is not present you can include it using.
+
+```JavaScript
+
+import { FormsModule } from `@angular/forms`;
+
+```
+
+Just from quickly looking at the [documentation](https://angular.io/api/forms/FormsModule). It looks like the module is used to aid in the use of "template-driven forms". This is a safe guess, since that is exactly what the documentation says. What is a "template-driven form"? Afer looking it up, A template-driven form is a representation of a Form control in Angular.
+
+## Project Setup and First App
+
+We need to use the Angular CLI for Angular development. BUT WHY? Angular Apps are more elaborate than a simple JS library so the Angular CLI helps us manage this complexity.
+
+### Creating a new Project
+
+```Shell
+
+ng new my-first-app
+
+```
+
+Then launch the generated angular app.
+
+```Shell
+
+ng serve --open
+
+```
+
+## Editing the First App
+
+Lots to wrap our head around, Holy Moly! The generated Angular App comes with whole bunch of crap. The code that is being used to build the app lives in the __src__ directory. Angular has the idea of components. A component is made up of many parts
+
+* app.component.css
+  * used to style the component
+* app.component.html
+  * the HTML template
+* app.component.spec.ts
+  * this is where we can test our component.
+* app.component.ts
+  * where we describe the behavior of our compent in TypeScript.
+* app.module.ts
+  * Where we define our module exports and imports.
+
+### Thoughts
+
+* __Q)__ What is the purpose of the naming convention employed? What are the considerations and assumptions being made?
+* __Q)__ What does a project look like that makes use of many components?
