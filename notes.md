@@ -58,6 +58,22 @@ import { FormsModule } from `@angular/forms`;
 
 Just from quickly looking at the [documentation](https://angular.io/api/forms/FormsModule). It looks like the module is used to aid in the use of "template-driven forms". This is a safe guess, since that is exactly what the documentation says. What is a "template-driven form"? Afer looking it up, A template-driven form is a representation of a Form control in Angular.
 
+### Updading the CLI
+
+```bash
+npm uninstall -g angular-cli @angular/cli
+npm cache clean
+npm install -g @angular/cli
+```
+
+### Common Issues and Solutions
+
+1) __Creation of a new project takes forever:__ This can happen on Windows form time to time. Try running the command line as administrator.
+
+2) __You get an EADDR error (Address already in use):__ You might already have another ng server process running - make sure to quite that or use __ng server --port ANOTHERPORT__
+
+3) __My changes are not reflected in the browser (App is not compiling)__ Check if the window running __ng serve__ displays an error. If that's not the case, make sure you're using the latest CLI version and try restarting your CLI.
+
 ## Project Setup and First App
 
 We need to use the Angular CLI for Angular development. BUT WHY? Angular Apps are more elaborate than a simple JS library so the Angular CLI helps us manage this complexity.
@@ -97,3 +113,7 @@ Lots to wrap our head around, Holy Moly! The generated Angular App comes with wh
 
 * __Q)__ What is the purpose of the naming convention employed? What are the considerations and assumptions being made?
 * __Q)__ What does a project look like that makes use of many components?
+
+## Typescript
+
+Typescript is a superset of Javascript. It is fully capable of anything that can be done in Javascript with some additional features; Types, Classes and Interfaces for example. Typescript is meant to be compiled to JavaScript.
