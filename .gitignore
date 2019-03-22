@@ -1,2 +1,10 @@
-# Ignored demo apps
-/first-app/
+# ignored node_modules
+node_modules/
+projects/01-first-app/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
