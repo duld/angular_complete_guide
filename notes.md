@@ -118,7 +118,7 @@ Lots to wrap our head around, Holy Moly! The generated Angular App comes with wh
 
 Typescript is a superset of Javascript. It is fully capable of anything that can be done in Javascript with some additional features; Types, Classes and Interfaces for example. Typescript is meant to be compiled to JavaScript.
 
-## Creating a new Angular Component
+## S2:14-18 Creating a new Angular Component
 
 To create a new Angular Component we have two options: manually creating the directory, creating the necessary files and updating the __app.module.ts__ file so that Angular knows about our new Component. Or, instead we can use the Angular CLI.
 
@@ -147,3 +147,35 @@ ng g c <name> [options]
 ```
 
 Thats about it.
+
+## S2:19 - Using an Inline Template over an external Template File
+
+We can inline our Template markup inside of the servers.component.ts @Component Metadata declaration. We only need change the 'templateUrl' key to just 'template' and to add some valid markup.
+
+```TypeScript
+// This declaration uses an external Template file
+@Component({
+    selector: 'app-servers',
+    templateUrl: './servers/component.html',
+    styleUrls: ['./servers/component.css']
+})
+export class ServersComponent implements OnInit {
+    constructor() {}
+    ngOnInit() {}
+}
+
+// This declaration uses an in-line Template markup
+@Component({
+    selector: 'app-servers',
+    templateUrl: `
+        <h3>Same markup present in the external file</h3>
+        <app-server></app-server>
+        <app-server></app-server>
+    `,
+    styleUrls: ['./servers/component.css']
+})
+export class ServersComponent implements OnInit {
+    constructor() {}
+    ngOnInit() {}
+}
+```
