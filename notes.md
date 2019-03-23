@@ -117,3 +117,33 @@ Lots to wrap our head around, Holy Moly! The generated Angular App comes with wh
 ## Typescript
 
 Typescript is a superset of Javascript. It is fully capable of anything that can be done in Javascript with some additional features; Types, Classes and Interfaces for example. Typescript is meant to be compiled to JavaScript.
+
+## Creating a new Angular Component
+
+To create a new Angular Component we have two options: manually creating the directory, creating the necessary files and updating the __app.module.ts__ file so that Angular knows about our new Component. Or, instead we can use the Angular CLI.
+
+### Creating the Component manually
+
+* Create a directory inside the __/app__ where our component will be housed.
+
+* Create a *MyNewComponent.component.ts* file.
+  
+  * We will be exporting a class that represents our compnent.
+  * Our Component class will have a TypeScript Decorator __@Component()__
+  * The decorator must be supplied with some Metadata about our Component. Common Metadata includes:
+    * selector
+    * templateUrl
+    * providers
+
+* Create a mynewcomponent.component.html file for the markup. This is the HTML markup we will reference in the @Component metadata as our __templateUrl__ value.
+
+### Creating the Component with the Angular CLI
+
+```Shell
+# Full Command to simplified
+ng generate component <name> [options]
+ng g component <name> [options]
+ng g c <name> [options]
+```
+
+Thats about it.
