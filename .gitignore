@@ -1,6 +1,7 @@
 # ignored node_modules
 node_modules/
-projects/01-first-app/node_modules
+projects/*/node_modules
+assignments/*/node_modules
 
 # IDE - VSCode
 .vscode/*
