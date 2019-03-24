@@ -179,3 +179,9 @@ export class ServersComponent implements OnInit {
     ngOnInit() {}
 }
 ```
+
+## S2:21 More on Component Selector
+
+The component Selector must be unique. The selector doesn't have to be a custom element. We can use many of the common selection strategies available in CSS.
+
+>NOTE: Selecting by id will not work.
