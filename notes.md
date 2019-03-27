@@ -185,3 +185,33 @@ export class ServersComponent implements OnInit {
 The component Selector must be unique. The selector doesn't have to be a custom element. We can use many of the common selection strategies available in CSS.
 
 >NOTE: Selecting by id will not work.
+
+## S2:22 What is Databinding
+
+Databinding can be described as "communication between your TypeScript code and the Template (HTML).
+
+### String Interpolation
+
+You can reference a JavaScript value using string interpolation, if you wrap the reference with double curly braces.
+
+```html
+
+<div>
+    <p>{{ someJavaScriptValue }}</p>
+</div>
+
+```
+
+### Property Binding
+
+We can pass values to our HTML template by binding them to HTML properties using the following syntax.
+
+```html
+<div>
+    <img [src]="heroImageUrl">
+</div>
+```
+
+### Event Binding
+
+With event binding we can react to user events in our TypeScript code.
