@@ -215,3 +215,17 @@ We can pass values to our HTML template by binding them to HTML properties using
 ### Event Binding
 
 With event binding we can react to user events in our TypeScript code.
+
+## S2:23 String Interpolation
+
+>"String Interpolation has to resolve into a string in the end."
+
+Even in our TypeScript code, if we store a value as a Number, our value will be converted into a string. Is the value being used in string interpolation the equivalent of calling .toString()? Or new String(VALUE)? No clue.
+
+## S2:34 Property Binding
+
+We can bind values from TypeScript to an HTML property using "property binding" in Angular. We need simply to wrap the property in square brackets like so:
+
+```html
+<img [src] = "someValueThatExistsInOurTypeScript">
+```
