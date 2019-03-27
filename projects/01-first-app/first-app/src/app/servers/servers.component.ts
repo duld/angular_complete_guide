@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-
-  constructor() { }
+  buttonDisabled = false;
+  
+  constructor() {
+    setTimeout(() => {
+      this.buttonDisabled = true;
+    }, 2500);
+  }
 
   ngOnInit() {
+
   }
 
 }
