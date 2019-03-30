@@ -229,3 +229,19 @@ We can bind values from TypeScript to an HTML property using "property binding" 
 ```html
 <img [src] = "someValueThatExistsInOurTypeScript">
 ```
+
+## S2:26-28 Event Binding, Bindable Properties and Passing Data via Event Binding
+
+To bind an event on an HTML element we wrap the event we want to bind to in parenthesis.
+
+### Binding to Click events
+
+Using Angular we do not bind to 'onClick' for an element. Instead we specify the event name 'click'.
+
+### $event
+
+When we bind a method to a HTML event, we are able to pass back an event object back to our TypeScript. The syntax is as follows.
+
+```HTML
+<button (click)="btnClickHandler($event)">Click Me</button>
+```
