@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
   buttonDisabled = false;
+  serverCreationStatus = `No server has been created so far.`;
   
   constructor() {
     setTimeout(() => {
@@ -18,4 +19,12 @@ export class ServersComponent implements OnInit {
 
   }
 
+  onCreateServer() {
+    this.serverCreationStatus = `A server has been created.`;
+    console.log(this.serverCreationStatus);
+  }
+
+  onServerRestart() {
+    this.serverCreationStatus = `Nuclear launch detected....`;
+  }
 }
