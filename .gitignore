@@ -1,7 +1,13 @@
-# ignored node_modules
+# node modules
 node_modules/
 projects/*/node_modules
-assignments/*/node_modules
+
+# assignment files
+assignments/**
+
+# assignment excludes
+
+
 
 # IDE - VSCode
 .vscode/*
