@@ -9,6 +9,8 @@ export class ServersComponent implements OnInit {
   buttonDisabled = false;
   serverCreationStatus = `No server has been created so far.`;
   serverName = ''
+  serverCreated = false;
+  servers = ['serverA', 'serverB'];
   
   constructor() {
     setTimeout(() => {
