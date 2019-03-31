@@ -236,7 +236,7 @@ To bind an event on an HTML element we wrap the event we want to bind to in pare
 
 ### Binding to Click events
 
-Using Angular we do not bind to 'onClick' for an element. Instead we specify the event name 'click'.
+Using Angular we do not bind to 'onClick' for an element. Instead we specify the event name 'click'. This is also true when binding to different events, we specify the type of the event in all cases. *as far as I'm aware as of this writing!*
 
 ### $event
 
@@ -245,3 +245,103 @@ When we bind a method to a HTML event, we are able to pass back an event object 
 ```HTML
 <button (click)="btnClickHandler($event)">Click Me</button>
 ```
+
+## S2:32 Directives
+
+Directives are instructions in the DOM. A component is a type of a Directive, a Directive with a Template.
+
+There are three kinds of directives in Angular:
+
+1) Components - directives with a template.
+2) Structural directives - change the DOM layout by adding or removing DOM elements.
+3) Attribute directives - change the appearance or behavior of an element, component, or another directive.
+
+Example Directive
+
+```TypeScript
+@Directive({
+    selector: '[exampleDirective]'
+})
+export class ExampleDirective {
+    // code
+}
+```
+
+Using the Directive
+
+```HTML
+<div exampleDirective></div>
+```
+
+
+
+## S2:33-34 Using ngif and else
+
+There are different types of Directives in Angular. One such is a Structural Directive. Structural Directives can change the DOM, and allow for logic checks: such as if, else etc.
+
+### ngif
+
+ngif allows us to display or hide an element based on a the boolean evaluation of a property.
+
+```html
+<p *ngif="displayContent">Content to display</p>
+```
+
+### else & then
+
+Inside of an ngif statement we can also use an else to branch our logic, with only some minor syntax additions.
+
+```html
+<p *ngif="displayContent; else errorMessage">Content to display</p>
+<ng-template #errorMessage>
+    <p>There was an error when requesting content from the server!</p>
+</ng-template>
+```
+
+to add the else statement, we must terminate the truthy evaluation result with a semicolon then add 'else' along with an id representing the element we will display instead of the truthy element. In the above example the truthy element is not present but __implied__ to be the paragraph where the ngif check lives. If we wanted to be consistent we could write the above example as follows.
+
+```html
+<ng-container 
+*ngif="displayContent; then showContent; else errorMessage">
+</ng-container>
+
+<ng-template #showContent>
+    <p>Content to display</p>
+</ng-template>
+
+<ng-template #errorMessage>
+    <p>There was an error when requesting content from the server!</p>
+</ng-template>
+```
+
+## S2:35-36 Styling Elements dynamically with ngStyle and ngClass
+
+### ngStyle
+
+ngStyle allows us to set the style of a component dynamically by associating css properties with component methods or fields. The value to be set must be a javascript object with key value pairs.
+
+```html
+<p
+  [ngStyle]="{backgroundColor: getColor()}"
+>{{ 'Server' }} with ID {{ serverId }} is {{ serverStatus }}
+</p>
+```
+
+### ngClass
+
+like ngStyle we can update the styles associated with a component dynamically using ngClass. But unlike ngStyle, ngClass adds or removes whole css classes from the component, based on a boolean expression. ngClass also accepts a JavaScript Object like ngStyle, where the keys represent css classes instead of css properties.
+
+```html
+<p
+  [ngClass]="{online: serverStatus === 'online'}"
+>{{ 'Server' }} with ID {{ serverId }} is {{ serverStatus }}
+</p>
+```
+
+## S2:37 Outputting lists with ngFor
+
+### ngFor
+
+A __structural directive__ that renders a template for each item in a collection. The directive is placed on an element, which becomes the parent of the cloned templates.
+
+[ngfor docs](https://angular.io/api/common/NgForOf#description)
