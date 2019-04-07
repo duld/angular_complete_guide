@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class ServersComponent implements OnInit {
   buttonDisabled = false;
   serverCreationStatus = `No server has been created so far.`;
-  serverName = ''
+  serverName = 'TestServer';
   serverCreated = false;
   servers = ['serverA', 'serverB'];
   
   constructor() {
     setTimeout(() => {
       this.buttonDisabled = true;
-    }, 500);
+    }, 1500);
   }
 
   ngOnInit() {
@@ -24,7 +24,9 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.serverCreationStatus = `A server has been created.`;
-    console.log(this.serverCreationStatus);
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
+    this.serverCreationStatus = `Server was created! Name is ${this.serverName}`;
   }
 
   onServerRestart() {
@@ -33,5 +35,11 @@ export class ServersComponent implements OnInit {
 
   onServerNameInput(e) {
     this.serverName = e.target.value;
+  }
+
+  onClearServers() {
+    console.log('clear!')
+    // this.servers.push('bill');
+    this.servers = [];
   }
 }
