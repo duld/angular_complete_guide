@@ -5,7 +5,8 @@ projects/*/node_modules
 # assignment files
 assignments/**
 
-# assignment excludes
+# demos
+demos/**
 
 
 
