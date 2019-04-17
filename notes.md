@@ -118,7 +118,7 @@ Lots to wrap our head around, Holy Moly! The generated Angular App comes with wh
 
 Typescript is a superset of Javascript. It is fully capable of anything that can be done in Javascript with some additional features; Types, Classes and Interfaces for example. Typescript is meant to be compiled to JavaScript.
 
-## S2:14-18 Creating a new Angular Component
+## S2 L14-18 Creating a new Angular Component
 
 To create a new Angular Component we have two options: manually creating the directory, creating the necessary files and updating the __app.module.ts__ file so that Angular knows about our new Component. Or, instead we can use the Angular CLI.
 
@@ -148,7 +148,7 @@ ng g c <name> [options]
 
 Thats about it.
 
-## S2:19 - Using an Inline Template over an external Template File
+## S2 L19 - Using an Inline Template over an external Template File
 
 We can inline our Template markup inside of the servers.component.ts @Component Metadata declaration. We only need change the 'templateUrl' key to just 'template' and to add some valid markup.
 
@@ -180,13 +180,13 @@ export class ServersComponent implements OnInit {
 }
 ```
 
-## S2:21 More on Component Selector
+## S2 L21 More on Component Selector
 
 The component Selector must be unique. The selector doesn't have to be a custom element. We can use many of the common selection strategies available in CSS.
 
 >NOTE: Selecting by id will not work.
 
-## S2:22 What is Databinding
+## S2 L22 What is Databinding
 
 Databinding can be described as "communication between your TypeScript code and the Template (HTML).
 
@@ -216,13 +216,13 @@ We can pass values to our HTML template by binding them to HTML properties using
 
 With event binding we can react to user events in our TypeScript code.
 
-## S2:23 String Interpolation
+## S2 L23 String Interpolation
 
 >"String Interpolation has to resolve into a string in the end."
 
 Even in our TypeScript code, if we store a value as a Number, our value will be converted into a string. Is the value being used in string interpolation the equivalent of calling .toString()? Or new String(VALUE)? No clue.
 
-## S2:34 Property Binding
+## S2 L34 Property Binding
 
 We can bind values from TypeScript to an HTML property using "property binding" in Angular. We need simply to wrap the property in square brackets like so:
 
@@ -230,7 +230,7 @@ We can bind values from TypeScript to an HTML property using "property binding" 
 <img [src] = "someValueThatExistsInOurTypeScript">
 ```
 
-## S2:26-28 Event Binding, Bindable Properties and Passing Data via Event Binding
+## S2 L26-28 Event Binding, Bindable Properties and Passing Data via Event Binding
 
 To bind an event on an HTML element we wrap the event we want to bind to in parenthesis.
 
@@ -273,9 +273,7 @@ Using the Directive
 <div exampleDirective></div>
 ```
 
-
-
-## S2:33-34 Using ngif and else
+## S2 L33-34 Using ngif and else
 
 There are different types of Directives in Angular. One such is a Structural Directive. Structural Directives can change the DOM, and allow for logic checks: such as if, else etc.
 
@@ -314,7 +312,7 @@ to add the else statement, we must terminate the truthy evaluation result with a
 </ng-template>
 ```
 
-## S2:35-36 Styling Elements dynamically with ngStyle and ngClass
+## S2 L35-36 Styling Elements dynamically with ngStyle and ngClass
 
 ### ngStyle
 
@@ -338,10 +336,37 @@ like ngStyle we can update the styles associated with a component dynamically us
 </p>
 ```
 
-## S2:37 Outputting lists with ngFor
+## S2 L37 Outputting lists with ngFor
 
 ### ngFor
 
 A __structural directive__ that renders a template for each item in a collection. The directive is placed on an element, which becomes the parent of the cloned templates.
 
 [ngfor docs](https://angular.io/api/common/NgForOf#description)
+
+## S5 L64 Binding to Custom Properties
+
+In this lecture we continued inspecting the TypeScript code and explored how to wire up a custom property from a Parent component to a Child component. The parent component in this case was the root __app.component__ and the child component was __server-element.component__.
+
+The app.component.ts file holds an array of 'serverElements' which are a JS object that hold a: type, name and content properties. In the template file of app.component.html we create a __server-element__ for every item in the __serverElements__ array on the __AppComponent__ Component class.
+
+But in order for a __server-element__ component to gain access to the data in 'serverElements' we must first bind to a property on the __ServerElement__ Component Class. To do the binding we require the __Input__ decorator from __@angular/core__.
+
+```TypeScript
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-server-element',
+  templateUrl: './server-element.component.html',
+  styleUrls: ['./server-element.component.css']
+})
+export class ServerElementComponent implements OnInit {
+  @Input() element: { type: string, name: string, content: string };
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```

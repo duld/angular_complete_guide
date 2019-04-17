@@ -22,3 +22,7 @@ Then to use in our template.
 ### Syntax
 
 It is important to note that two way databinding uses square brackets with parenthesis, and inside the parenthesis a __directive__. In the above example the __directive__ being used is __ngModel__.
+
+## Model Classes
+
+A Model is an ecapsulation of the data that is consumed by the application. I imagine that a model contains all the relevent information recieved from an API request, say, and any methods that would be desireable to interact with that data.
