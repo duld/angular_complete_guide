@@ -299,7 +299,7 @@ Inside of an ngif statement we can also use an else to branch our logic, with on
 to add the else statement, we must terminate the truthy evaluation result with a semicolon then add 'else' along with an id representing the element we will display instead of the truthy element. In the above example the truthy element is not present but __implied__ to be the paragraph where the ngif check lives. If we wanted to be consistent we could write the above example as follows.
 
 ```html
-<ng-container 
+<ng-container
 *ngif="displayContent; then showContent; else errorMessage">
 </ng-container>
 
@@ -361,7 +361,34 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./server-element.component.css']
 })
 export class ServerElementComponent implements OnInit {
+  // expose the 'element' property
   @Input() element: { type: string, name: string, content: string };
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+> "By default, all properties on a component are private, and are note exposed to any parent components"
+
+### Using an alias when exposing Component properties using @Input decorator
+
+We can give our property an alias when exposing it, through the @Input decorator, by passing the @Input a string argument.
+
+```TypeScript
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-server-element',
+  templateUrl: './server-element.component.html',
+  styleUrls: ['./server-element.component.css']
+})
+export class ServerElementComponent implements OnInit {
+  // give our exposed property an alias
+  @Input('propAlias') element: { type: string, name: string, content: string };
 
   constructor() { }
 
