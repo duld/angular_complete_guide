@@ -397,3 +397,15 @@ export class ServerElementComponent implements OnInit {
 
 }
 ```
+
+## S5 L66 Binding to Custom Events
+
+If we want to expose an event to a parent component, there are a few steps we must take. First we need to create a custom event using Angular's __EventEmitter<>__ class. The EventEmitter is able to emit a custom event and pass data out of the component, however we must also, expose the event using the __@Output__ decorator.
+
+```TypeScript
+// inside some component //
+@Output() myCustomEventA = new EventEmitter<{someData: string, moreData: number}>();
+
+// another way to define the event.
+@Output() someOtherEvent: EventEmitter<{diffData: number, otherData: stirng}> = new EventEmitter();
+``` 
