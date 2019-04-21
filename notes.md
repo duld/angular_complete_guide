@@ -408,4 +408,62 @@ If we want to expose an event to a parent component, there are a few steps we mu
 
 // another way to define the event.
 @Output() someOtherEvent: EventEmitter<{diffData: number, otherData: stirng}> = new EventEmitter();
-``` 
+```
+
+## S5 L67-68 Custom Property And Event Binding
+
+We can communcate between components using the __@Input()__ and __@Output()__ decorators, which works well for __parent-to-child__ communcation. But this method can be cumbersome for __sibling-to-sibling__ communcation. There is another strategy for handling these types of relationships, called: __services__.
+
+We will learn more about using services in Angular later in the course.
+
+## S5 L69-70 Understanding View Encapsulation
+
+Angular enforces style encapsulation, by only allowing styles defined in a component to be applied to that element. This is enforced by applying a unique attribute on all elements of a component and then using the new attribute as a selector in the css being applied.
+
+### Overriding the default encapsulation behavior
+
+The default View Encapsulation behavior can be overriden by declaring the desired behavior in the __@Component()__ definition, using the 'encapsulation' property.
+
+```TypeScript
+// ViewEncapsulation must be imported - first.
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+
+@Component({
+  selector: 'app-server-element',
+  templateUrl: './server-element.component.html',
+  styleUrls: ['./server-element.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class ServerElementComponent implements OnInit {
+  @Input('serverElement') element: { type: string, name: string, content: string };
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+}
+```
+
+## S5 L71 Using Local References in Templates & @ViewChild
+
+Elements in our Angular templates can have an identifier given to them, which we can use as a __local reference__. This local reference can be passed to method calls in our template or used as a selector.
+
+When we pass the local reference to a method call, we have full access to the element inside the method. This lookup will occur for every method call that we pass the local reference to, if instead we want to do the lookup before any method call we can use a decorator instead: __ViewChild()__.
+
+ViewChild will grab the local reference of the element at the creation of the component and hold onto it, we need only supply the selector, during the declaration.
+
+## S5 L73 Projecting Content with ng-content
+
+Everything that is placed inside of the opening and closing tag of your Angular Component will be lost by default. To change this behavior we need to embed an __ng-content__ directive inside of the component markup file.
+
+```HTML
+<!-- app-server-element component -->
+<div class="panel panel-default">
+  <div class="panel-heading">{{ element.name }}</div>
+  <div class="panel-body">
+    <ng-content> 
+        <!-- All markup inside of the app-server-element component will be projected here -->
+    </ng-content>
+  </div>
+</div>
+```
