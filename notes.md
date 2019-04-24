@@ -467,3 +467,84 @@ Everything that is placed inside of the opening and closing tag of your Angular 
   </div>
 </div>
 ```
+
+## S5 L74 Understanding Component Lifecycle
+
+A component has a lifecycle managed by Angular.
+
+> Angular creates it, renders it, creates and renders its children, checks it when its data-bound properties change, and destroys it before removing it from the DOM.
+
+A directive has the same set of lifecycle hooks.
+
+* __ngOnChanges()__
+  * Called after a bound input property changes
+  * Called whenever an input value changes
+  * Is called the first time before ngOnInit()
+* __ngOnInit()__
+  * Called once the component is initialized, this runs AFTER the constructor
+  * Called after input values are set when a component is initialized.
+  * Added to every component by default by the Angular CLI.
+  * Called only once.
+* __ngDoCheck()__
+  * Called during every change detection run. ngDoCheck will run on any event to CHECK if anything has changed.
+  * Called during all change detection runs
+  * A run through the view by Angular to update/detect changes
+* __ngAfterContentInit()__
+  * Called after content (ng-content) has been projected into view.
+  * Called only once after first ngDoCheck().
+  * Called after the first run through of initializing content.
+* __ngAfterContentChecked()__
+  * Called every time the projected content has been checked.
+  * Called after every ngDoCheck()
+  * Waits till after ngAfterContentInit() on first run through
+* __ngAfterViewInit()__
+  * Called after the component's view (and child views) has been initialized.
+* __ngAfterViewChecked()__
+  * Called every time the view (and child views) have been checked.
+  * Called after all the content is initialized and checked. (Component and child components).
+  * First call is after ngAfterViewInit()
+  * Called after every ngAfterContentChecked() call is completed
+* __ngOnDestroy()__
+  * Called once the component is about to be destroyed. Useful for clean up.
+  * Used to clean up any necessary code when a component is removed from the DOM.
+  * Fairly often used to unsubscribe from things like services.
+  * Called only once just before component is removed from the DOM.
+
+## S5 L75 Seeing Lifecycle Hooks in Action
+
+We can gain access to life cycle hooks by difining the method hook our component. This in itself is enough, however it is best practice to IMPLEMENT the interface on our component as well. Explicit is better than implicit.
+
+```TypeScript
+
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core'
+
+@Component({
+  selector: 'app-my-component',
+  templateURL: './my-component/my-component.component.html',
+  styleURL: ['./my-component/my-component.component.css']
+})
+export class MyComponent implements OnInit, OnChanges{
+  constructor() {}
+
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
+}
+
+```
+
+## S5 L76-77 @ContentChild() decorator
+
+Similar to how we can gain access to an element through the __@ViewChild()__ decorator, we can gain access to an element inside of an __ng-content__ through the __@ContentChild()__ decorator. What is the difference between the two, since they behave similarly?
+
+> @ViewChild == your own child; @ContentChild == someone elses child.
+
+In other words, we should use @ViewChild when binding to a local reference contained in a component's view. Not a component (B) that would be a child of that component (A), which would have it's own seperate view.
+
+And conversely we should use @ContentChild to bind to a reference inside of the content block of some child component. As a reminder, the __Content__ of a component is __PROJECTED INTO__ a 'child component' from a 'parent component'.
+
+[More on the topic - StackOverflow](https://stackoverflow.com/questions/34326745/whats-the-difference-between-viewchild-and-contentchild)
+
+[ViewChildren & ContentChildren in Angular](https://blog.mgechev.com/2016/01/23/angular2-viewchildren-contentchildren-difference-viewproviders/)
