@@ -8,7 +8,7 @@
   
   <div class="col-xs-12">
     <!-- recipes[] creation START -->
-    <a 
+    <!-- <a 
       href="#" 
       class="list-group-item clearfix"
       *ngFor="let recipe of recipes;">
@@ -23,9 +23,9 @@
           alt="" 
           style="max-height: 50px;">
       </span>
-    </a>
+    </a> -->
     <!-- recipes[] creation END -->
-    <app-recipe-item></app-recipe-item>
+    <app-recipe-item *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-item>
   </div>
  
 </div>
