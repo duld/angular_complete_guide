@@ -8,12 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   appToDisplay: string;
 
-  onShowRecipes(str) {
-    this.appToDisplay = str;
-  }
-
-  onShowShoppingList(str) {
-    this.appToDisplay = str;
+  constructor() {
+    this.appToDisplay = 'recipes';
   }
 
   onAppSelect(str) {

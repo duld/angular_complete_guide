@@ -13,11 +13,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onShowRecipes() {
-    this.appSelect.emit('recipes');
+  onSelect(feature: string) {
+    this.appSelect.emit(feature);
   }
+  // onShowRecipes() {
+  //   this.appSelect.emit('recipes');
+  // }
 
-  onShowShoppingList() {
-    this.appSelect.emit('shopping-list');
-  }
+  // onShowShoppingList() {
+  //   this.appSelect.emit('shopping-list');
+  // }
 }

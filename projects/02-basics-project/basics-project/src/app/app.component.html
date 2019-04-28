@@ -6,7 +6,9 @@
   <h2>Testing if Bootstrap Shows up</h2>
   <div class="row">
     <div class="col-md-12">
+      <!-- recipes -->
       <app-recipes *ngIf="appToDisplay === 'recipes'"></app-recipes>
+      <!-- shopping list -->
       <app-shopping-list *ngIf="appToDisplay === 'shopping-list'"></app-shopping-list>
     </div>
   </div>
