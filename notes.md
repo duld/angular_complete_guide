@@ -461,7 +461,7 @@ Everything that is placed inside of the opening and closing tag of your Angular 
 <div class="panel panel-default">
   <div class="panel-heading">{{ element.name }}</div>
   <div class="panel-body">
-    <ng-content> 
+    <ng-content>
         <!-- All markup inside of the app-server-element component will be projected here -->
     </ng-content>
   </div>
