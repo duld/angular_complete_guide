@@ -16,11 +16,4 @@ export class HeaderComponent implements OnInit {
   onSelect(feature: string) {
     this.appSelect.emit(feature);
   }
-  // onShowRecipes() {
-  //   this.appSelect.emit('recipes');
-  // }
-
-  // onShowShoppingList() {
-  //   this.appSelect.emit('shopping-list');
-  // }
 }
