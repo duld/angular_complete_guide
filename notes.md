@@ -548,3 +548,51 @@ And conversely we should use @ContentChild to bind to a reference inside of the 
 [More on the topic - StackOverflow](https://stackoverflow.com/questions/34326745/whats-the-difference-between-viewchild-and-contentchild)
 
 [ViewChildren & ContentChildren in Angular](https://blog.mgechev.com/2016/01/23/angular2-viewchildren-contentchildren-difference-viewproviders/)
+
+## S7 L89 Creating a basic attribute directive
+
+Name your custom directive using the following pattern: __DIRECTIVE-NAME/DIRECTIVE-NAME.directive.ts__. Each custom directive doesn't necessarily have to live in its own directory, one solution is to have a 'directives' directory, where all our custom directives will live.
+
+### Steps for creating our attribute directive
+
+1) Create our dirctive TypeScript file: *my-directive.directive.ts*
+2) Create a directive class, using the __@Directive()__ decorator
+3) Define the selector to be used for our Directive, in the meta-data supplied the __@Directive__ decorator.
+4) Add our custom directive to the list of *declarations* in the __app.module.ts__ file. Import the directive itself, as we would any component at the top of the file.
+
+```TypeScript
+import { Directive, OnInit, ElementRef} from '@angular/core';
+
+// use the @Directive decorator to define our directive
+@Directive({
+  selector: '[myCustomDirective]'
+})
+export class MyCustomDirective extends OnInit {
+  // store a reference to the element the directive will affect.
+  constructor(private el: ElementRef) {}
+
+  ngOnInit() {}
+}
+```
+
+### Using our attribute directive
+
+Now that our directive is defined, we simply have to add it to any element as an attribute for it to take effect. Like so.
+
+```HTML
+<!-- Apply our attribute directive to the paragraph tag -->
+<p myCustomDirective>This is some very interesting text that is worth the time to read. We are much improved upon reading. Yes. Very well good now.</p>
+
+<div>
+  <!-- Add the directive to a span tag -->
+  <p>Some other interesting tidbits <span myCustomDirective>Keep the good times rolling!</span></p>
+</div>
+
+```
+
+The way we have defined the directive at the moment will no affect, since we aren't manipulating the element the directive is applied to in any way. But the directive is *valid* code and is in fact being applied.
+
+### Safely interact with the DOM / Rendering Engine
+
+We have access to the properties of the DOM element in Angular through multple ways. One such way, thats been explored so far is through an __ElementRef__ of the DOM element to be manipulated. This method however is browser specific, it is encouraged that we interact with the Element through an Abstraction that Angular provides: the __Renderer2__ class.
+
