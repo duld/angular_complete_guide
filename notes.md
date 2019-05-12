@@ -596,3 +596,72 @@ The way we have defined the directive at the moment will no affect, since we are
 
 We have access to the properties of the DOM element in Angular through multple ways. One such way, thats been explored so far is through an __ElementRef__ of the DOM element to be manipulated. This method however is browser specific, it is encouraged that we interact with the Element through an Abstraction that Angular provides: the __Renderer2__ class.
 
+## S7 L90-91 Using the Renderer to build a better attribute Diricitve
+
+The __Renderer2__ class acts as a wrapper for manipulating elements on the DOM or any other *platform*. Because the Rendere2 provides an interface for element manipulation, we should favor using it over vanilla JavaScript to access the DOM API. If we need to modify the DOM, chances are we should be using the Renderer2 class.
+
+__platform__: by platform, I mean where the app will be running: browser (DOM), Desktop, Mobile (Native/psudo-native)
+
+## S7 L92-94 Using HostListener, Host Events and HostBinding
+
+### HostListener
+
+HostListener is a method decorator that we can use to listen to and handle events that emit from the element that our Directive is placed on. HostListener must be imported form __'@angular/core'__.
+
+### HostBinding
+
+HostBinding is a 'property decorator', that can be used to change or set the property of the element from inside the directive.
+
+> @HostBinding lets you set properties on the element or component that hosts the directive. - alligator.io
+
+## S7 L95-97 Structural Directives continued
+
+>Structural directives are responsible for HTML layout. They shape or reshape the DOM's *structure*, typically by adding, removing or manipulating elements
+>
+>As with other directives, you apply a structural directive to a *host element*. The directive then does what it's supposed to do with the host element and its descendants. 
+>
+>[Angular Docs](https://angular.io/guide/structural-directives)
+
+### About the \* in Structural Directives
+
+Why do structural directives require an asterisk ( \* )? The asterisk, indicates to Angular that we are working with a structural directive. Angular will transform the * syntax into the required shape. For example:
+
+```HTML
+<!-- * syntax used for structural directive -->
+<div *ngIf="!onlyOdd">
+  <li
+    class="some-class"
+    *ngFor="let even of evenNumbers">
+    {{even}}
+  </li>
+</div>
+
+<!-- What Angular transforms the * structural directive syntax to -->
+<ng-template [ngIf]="!onlyOdd">
+  <div>
+    <ng-template [ngFor]="let even of evenNumbers">
+      <li class="some-class">{{even}}</li>
+    <ng-template>
+  </div>
+</ng-template>
+```
+
+Using the asterisk is a shorthand to achieve the desired result and saves us a little bit of typing.
+
+> ...The asterisk (\*) is a convenience notation and the string is a microsyntax rather than the usual template expression. Angular desugars this notation into a marked-up &lt;ng-template&gt; that surrounds the host element and its descendents.
+
+### Creating our own Structural Directives
+
+To create our own structural directive we need to import:
+
+* Directive
+* Input
+* TemplateRef
+* ViewContainerRef
+
+all from '@angular/core'
+
+* __Directive:__ lets us define our directive using the __@Directive()__ decorator.
+* __Input:__ lets us accept values on our directive from an exposed property using __@Input()__.
+* __TemplateRef__: Gives us access to the contents of an &lt;ng-template&gt;.
+* __ViewContainerRef__: Allows access to the view container.
