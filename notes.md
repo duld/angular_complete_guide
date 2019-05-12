@@ -618,7 +618,7 @@ HostBinding is a 'property decorator', that can be used to change or set the pro
 
 >Structural directives are responsible for HTML layout. They shape or reshape the DOM's *structure*, typically by adding, removing or manipulating elements
 >
->As with other directives, you apply a structural directive to a *host element*. The directive then does what it's supposed to do with the host element and its descendants. 
+>As with other directives, you apply a structural directive to a *host element*. The directive then does what it's supposed to do with the host element and its descendants.
 >
 >[Angular Docs](https://angular.io/guide/structural-directives)
 
