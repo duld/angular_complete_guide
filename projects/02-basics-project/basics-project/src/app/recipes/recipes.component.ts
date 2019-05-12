@@ -10,7 +10,7 @@ export class RecipesComponent implements OnInit {
   selectedRecipe: Recipe;
 
   constructor() {
-    this.selectedRecipe = new Recipe('Select a Recipe', 'Recipe description', 'default')
+    // this.selectedRecipe = new Recipe('Select a Recipe', 'Recipe description', 'default')
    }
 
   ngOnInit() {
