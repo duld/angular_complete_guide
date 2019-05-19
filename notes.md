@@ -665,3 +665,84 @@ all from '@angular/core'
 * __Input:__ lets us accept values on our directive from an exposed property using __@Input()__.
 * __TemplateRef__: Gives us access to the contents of an &lt;ng-template&gt;.
 * __ViewContainerRef__: Allows access to the view container.
+
+## S9 L100-101 Services and Dependency Injection
+
+### Services in Angular
+
+__My Description:__ A services is external functionality that a component makes use of, instead of defining the functionality itself. A service is often general purpose and can be made use of by multiple components. This helps reduce code duplication.
+
+__Angular Tour of Heros Description:__ Services are a great way to share information among classes that don't know each other. Also, Components shouldn't fetch or save data directly. THey should focus on presenting data and delegate data access to a service.
+
+### Creating a custom service
+
+A custom service is a file that contains an exported class, which would look something like so:
+
+```TypeScript
+export class AccountsService {
+  accounts: {name: string, id: number, status: string}[] = [];
+
+  addAccount(id: number, name: string, status: string) {
+    this.accounts.push({name, id});
+  }
+
+  updateAccount(id: number, status: string): bool {
+    for (let i=0; i < this.accounts.length; i++) {
+      if (this.accounts[i].id === id) {
+        this.accounts[i].status = status
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+
+This class is then imported into a Component or the Angular __app.module.ts__ file. When imported into a component the service class is added to the 'providers' array in the component's metadata.
+
+```TypeScript
+// the usual component imports
+import {AccountsService} from '../accounts-service.service';
+
+@Component({
+  selector: 'appMyComponent',
+  templateURL: './my-component.component.html',
+  styleURLs: ['./my-component.component.css'],
+  providers: [AccountsService]
+})
+export class AppMyComponent {}
+
+```
+
+### Angular's Hierarchical Injectors
+
+> Angular has a Hierarchical Dependency Injection system. There is actually a tree of injectors that parallel an application's component tree. You can reconfigure the injectors at any level of that component tree.
+
+A service that is injected in a component which has many child components, gives access to the same instance of the injected service across all child components. This is true, so long as the child components import the service.
+
+A child component that imports the same service and adds it to it's own 'providers' array, will not use it's parent's instance of the service but will create it's own.
+
+### Injecting a Service within a Service
+
+A service can also make use of another service through dependancy injection through the use of the the __@Injectible__ decorator. @Injectable() lets Angular know that a class can be used with the dependency injector. 
+
+```TypeScript
+@Injectable()
+export class AccountsService {
+  accounts: {name: string, id: number, status: string}[] = [];
+
+  addAccount(id: number, name: string, status: string) {
+    this.accounts.push({name, id});
+  }
+
+  updateAccount(id: number, status: string): bool {
+    for (let i=0; i < this.accounts.length; i++) {
+      if (this.accounts[i].id === id) {
+        this.accounts[i].status = status
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
