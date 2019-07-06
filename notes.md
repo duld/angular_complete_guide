@@ -724,7 +724,7 @@ A child component that imports the same service and adds it to it's own 'provide
 
 ### Injecting a Service within a Service
 
-A service can also make use of another service through dependancy injection through the use of the the __@Injectible__ decorator. @Injectable() lets Angular know that a class can be used with the dependency injector. 
+A service can also make use of another service through dependancy injection through the use of the the __@Injectible__ decorator. @Injectable() lets Angular know that a class can be used with the dependency injector.
 
 ```TypeScript
 @Injectable()
@@ -746,3 +746,87 @@ export class AccountsService {
   }
 }
 ```
+
+## S11 Routing
+
+* __router-outlet:__
+  * router-outlet is an angular component that directs the output of Angular's __Router__.
+  * When we handle a route using Angular's router, we need to provide two pieces of information.
+    * The route to handle.
+    * The component / view to render.
+
+### Programatically navigate using Angular Router
+
+We can navigate programatically using Angular's built in Router, by importing the Router into our Component and calling the 'navigate()' method.
+
+```TypeScript
+
+// navigate to the route using an absolute path
+this.router.navigate(['/servers']);
+
+// navigate to the route using a relative path
+this.router.navigate(['servers']);
+
+```
+
+The router doesn't know by default the current path that the app is currently rendering. We must provide that information via the __ActivatedRoute__ class.
+
+```TypeScript
+
+import { Router, ActivatedRoute } from '@angular/router';
+
+// ... inside the component
+this.router.naviagate(['servers'], {relativeTo: this.activatedRoute});
+```
+
+### Accessing parameters from the route
+
+We have access to the parameters of a route through the same __ActivatedRoute__ class that we imported from '@angular/routing'.
+
+Example route - __my-route/:order-number/:quantity__
+
+```Typescript
+
+this.paramsSubscription: Subscription;
+
+this.paramsSubscription = this.route.params
+  .subscribe(
+    (params: Params) => {
+      this.user.id = params['id'];
+      this.user.name = params['name']
+    }
+  )
+
+ngOnDestroy() {
+  this.paramsSubscription.unsubscribe();
+}
+```
+
+### Accessing Query Parameters and Hash fragments
+
+### on the 'routerLink' property
+
+* queryParams: takes a javascript object, with key value pairs representing the query string and the corresponding value.
+* fragment: fragment takes a single string or a series of strings.
+
+#### Query String
+
+tldr: Used to set parameters for logic to work.
+
+> ..., a __query string__ is the part of a uniform resource locator (URL) which assigns values to specified parameters. The query string commonly includes fields added to a base URL by a WEb browser o other client application, for example as part of an HTML form.
+>
+>A web server can handle a HTTP request either by reading a file from its file system based on the URL path or by handling the request using logic that is specific to the type of resource. In caases where special logic is invoked, the query stirng will be available to that logic for use in it's processing, along with the path component of the URL.
+>
+> ~ Wikipedia
+
+#### Fragment identifier
+
+tldr: Used to navigate to a section of the webpage that has a matching identifier.
+
+> In computer hypertext, a fragment identifier is a string of characters that refers to a resource that is subordinate to another, primary resource. The primary resource is identified by a Uniform Resource Identifier (URI), and the fragment identifier points to the subordinate resource.
+>
+>The fragment identifier introduced by a hash mark # is the optional last part of a URL for a document. It is typically used to identify a portion of that document. The generic syntax is specified in RFC 3986. The hash-mark separator in URIs is not part of the fragment identifier.
+
+### Route Guards
+
+A route guard is a piece of code, similar to 'middle-ware' in node js, that is run when a route is accessed. In the case of Angular however

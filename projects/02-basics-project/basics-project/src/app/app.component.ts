@@ -6,13 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  appToDisplay: string;
 
-  constructor() {
-    this.appToDisplay = 'recipes';
-  }
+  constructor() {}
 
-  onAppSelect(str) {
-    this.appToDisplay = str;
-  }
 }

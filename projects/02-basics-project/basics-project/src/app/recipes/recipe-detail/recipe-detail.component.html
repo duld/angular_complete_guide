@@ -22,9 +22,10 @@
       </button>
       <ul class="dropdown-menu">
         <li><a style="cursor: pointer;" (click)="onSendToShoppingList(displayedRecipe.ingredients)">Send to Shopping List</a></li>
-        <li><a href="#">Add Ingredients</a></li>
-        <li><a href="#">Edit Ingredients</a></li>
-        <li><a href="#">Delete Ingredients</a></li>
+        <!-- <li><a style="cursor: pointer;">Add Ingredients</a></li> -->
+        <!-- <li><a style="cursor: pointer;" [routerLink]="['edit']">Edit Ingredients</a></li> -->
+        <li><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Ingredients</a></li>
+        <li><a style="cursor: pointer;">Delete Ingredients</a></li>
       </ul>
     </div>
   </div>
