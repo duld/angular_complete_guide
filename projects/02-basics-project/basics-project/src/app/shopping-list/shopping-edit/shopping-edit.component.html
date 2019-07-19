@@ -23,13 +23,18 @@
             name="amount"
             class="form-control"
             ngModel
+            pattern="^[1-9]+[0-9]*$"
             required>
         </div>
       </div>
       <!-- ingredient buttons -->
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">Add</button>
+          <button 
+            class="btn btn-success" 
+            type="submit"
+            [disabled]="!f.valid"
+            >Add</button>
           <button class="btn btn-danger" type="button">Delete</button>
           <button class="btn btn-primary" type="button">Clear</button>
         </div>
