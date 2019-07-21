@@ -1,0 +1,12 @@
+button {
+  margin-right: 5px;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid red
+}

@@ -30,7 +30,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe() {
-
     this.router.navigate(['edit'], {relativeTo: this.activatedRoute});
   }
 
@@ -53,4 +52,8 @@ export class RecipeDetailComponent implements OnInit {
     );
   }
 
+  onDeleteIngredients() {
+    this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['../'], {relativeTo: this.activatedRoute});
+  }
 }
