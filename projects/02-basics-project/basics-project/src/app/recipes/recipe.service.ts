@@ -10,7 +10,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class RecipeService {
-  private recipes: Recipe[] = [
+  private recipes: Recipe[] = [];
+  /*[
     new Recipe(
       'Turkey & Beef - Chili',
       'A Paleo version of a family classic.',
@@ -34,11 +35,16 @@ export class RecipeService {
         new Ingredient('Yello Mustard', 5),
         new Ingredient('BBQ Sauce', 3)
       ])
-  ];
+  ];*/
 
   public recipeUpdate = new Subject<Recipe[]>();
 
   constructor(private shoppingListService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipeUpdate.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
