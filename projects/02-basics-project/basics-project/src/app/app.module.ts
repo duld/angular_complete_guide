@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 // app //
 import { AppComponent } from './app.component';
+import { AuthComponent } from './auth/auth.component';
 // header  //
 import { HeaderComponent } from './header/header.component';
 // recipe  //
@@ -18,14 +19,16 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 // directives //
 import { DropdownDirective } from './shared/dropdown.directive';
-import { AppRoutigModule } from './shopping-list/app-routing.module';
+import { AppRoutigModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     ShoppingListComponent,
     HeaderComponent,
     RecipeListComponent,
@@ -35,7 +38,8 @@ import { RecipeService } from './recipes/recipe.service';
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
