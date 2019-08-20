@@ -20,6 +20,10 @@ export class AuthComponent {
     private authService: AuthService,
     private router: Router) {}
 
+  onHandleError() {
+    this.error = null;
+  }
+
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
