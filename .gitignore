@@ -16,3 +16,4 @@ demos/**
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+projects/02-basics-project/notes.md
