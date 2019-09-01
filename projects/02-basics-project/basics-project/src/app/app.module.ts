@@ -15,7 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutigModule } from './app-routing.module';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { RecipesModule } from './recipes/recipes.module';
+// import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
@@ -23,15 +23,13 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 @NgModule({
   declarations: [
     AppComponent,
-    // ShoppingListComponent,
     HeaderComponent,
-    // ShoppingEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutigModule,
     HttpClientModule,
-    RecipesModule,
+    // RecipesModule,
     ShoppingListModule,
     AuthModule,
     SharedModule
