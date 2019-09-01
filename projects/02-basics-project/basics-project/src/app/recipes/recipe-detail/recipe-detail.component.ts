@@ -26,7 +26,11 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onSendToShoppingList(ingredients: Ingredient[]) {
+    console.log('heeyo!');
     this.shoppingListService.setIngredients(ingredients);
+
+    // We may not want to navigate immediately to /shopping-list
+    // this.router.navigate(['shopping-list']);
   }
 
   onEditRecipe() {
