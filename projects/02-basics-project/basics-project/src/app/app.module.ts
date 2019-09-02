@@ -9,13 +9,9 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 
-// import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-// import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-
 import { AppRoutigModule } from './app-routing.module';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-// import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
@@ -29,7 +25,6 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     BrowserModule,
     AppRoutigModule,
     HttpClientModule,
-    // RecipesModule,
     ShoppingListModule,
     AuthModule,
     SharedModule
