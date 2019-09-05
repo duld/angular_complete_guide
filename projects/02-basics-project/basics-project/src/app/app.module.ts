@@ -1,8 +1,8 @@
 // angular //
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store'
 
 // app //
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,9 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
     BrowserModule,
     AppRoutigModule,
     HttpClientModule,
+    StoreModule.forRoot({
+      shoppingList: shoppingListReducer
+    }),
     ShoppingListModule,
     AuthModule,
     SharedModule
